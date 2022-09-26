@@ -27,7 +27,7 @@ import com.casa.cadastro.services.EnderecoService;
 
 @RestController
 @RequestMapping("/Endereco")
-@CrossOrigin(origins = "localhost:4200/form")
+@CrossOrigin(origins = "http://localhost:4200")
 public class EnderecoController {
 
 	@Autowired
@@ -65,7 +65,7 @@ public class EnderecoController {
 	}
 
 	@PutMapping("/Atualizar/{enderecoId}")
-	public ResponseEntity<Endereco> atualizarEnderecoPorId(@Valid @PathVariable Long enderecoId,
+	public ResponseEntity<Endereco> atualizarPorId(@Valid @PathVariable Long enderecoId,
 			@RequestBody Endereco endereco) {
 		Endereco e = enderecoService.buscarPorId(enderecoId);
 		if (e != null) {

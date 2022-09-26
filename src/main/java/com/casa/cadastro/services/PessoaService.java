@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.casa.cadastro.models.Endereco;
 import com.casa.cadastro.models.Pessoa;
-import com.casa.cadastro.repositorys.EnderecoRepository;
 import com.casa.cadastro.repositorys.PessoaRepository;
 
 @Service
@@ -18,14 +17,14 @@ public class PessoaService {
 	@Autowired
 	private PessoaRepository pessoaRepository;
 
-	@Autowired
-	private EnderecoRepository enderecoRepository;
-
 	public Pessoa salvar(Pessoa pessoa) {
-		Endereco endereco = enderecoRepository.findById(pessoa.getEndereco().getId())
-				.orElseThrow(() -> new RuntimeException(" Não encontrado."));
+		Endereco endereco = new Endereco(pessoa.getEndereco().getCep(), pessoa.getEndereco().getLogradouro(),
+				pessoa.getEndereco().getComplemento(), pessoa.getEndereco().getBairro(),
+				pessoa.getEndereco().getLocalidade(), pessoa.getEndereco().getUf());
+
 		Pessoa p = new Pessoa(pessoa.getId(), pessoa.getNome(), pessoa.getSobrenome(), pessoa.getIdade(),
 				pessoa.getSexo(), pessoa.getTelefone(), endereco);
+
 		pessoa = pessoaRepository.save(p);
 		return pessoa;
 	}

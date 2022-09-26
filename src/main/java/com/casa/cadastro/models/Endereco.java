@@ -17,8 +17,8 @@ public class Endereco implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Size(max = 8, min = 8, message = "Deve conter 8 caracteres")
-	@Pattern(regexp = "^[0-9]{8}$", message = "Padrão incorreto")
+	@Size(max = 9, min = 8, message = "Deve conter máximo 9 caracteres!")
+	@Pattern(regexp = "^([0-9]{5})([-])?([0-9]{3})$", message = "Padrão incorreto")
 	private String cep;
 	private String logradouro;
 	private String complemento;

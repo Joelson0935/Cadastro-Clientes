@@ -4,12 +4,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.casa.cadastro.models.Endereco;
+import com.casa.cadastro.models.Login;
 
 @Repository
-public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
+public interface LoginRepository extends JpaRepository<Login, Long> {
 
-	@Query("select e from Endereco e where e.cep = :cep")
-	Endereco findByCep(String cep);
-	
+	@Query("select l from Login l where l.email = :email")
+	Login buscarPorEmail(String email);
 }

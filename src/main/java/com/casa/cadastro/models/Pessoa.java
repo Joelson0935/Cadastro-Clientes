@@ -3,6 +3,7 @@ package com.casa.cadastro.models;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,17 +23,17 @@ public class Pessoa implements Serializable {
 	private Long id;
 	@Size(min = 4, max = 18, message = "Mínimo 4 e máximo 18 caracteres")
 	private String nome;
-	@Size(min = 4, max = 50, message = "Mínimo 4 e máximo 50 caracteres")
+	@Size(min = 15, max = 60, message = "Mínimo 15 e máximo 60 caracteres")
 	private String sobrenome;
 	@Min(value = 1, message = "Idade mínima de 1 ano")
 	@Max(value = 120, message = "Idade máxima de 120 anos.")
 	private Integer idade;
 	@Size(max = 1, min = 1, message = "Aceita apenas Uma Letra")
 	private String sexo;
-	@Pattern(regexp = "^[0-9]{2}[ ][0-9]{5}[-][0-9]{4}$", message = "Siga o Padrão: 99 99999-9999")
+	@Pattern(regexp = "([1-9]{2})([ ])?([0-9]{4,5})([-])?([0-9]{4})", message = "Siga o Padrão: 99 99999-9999")
 	private String telefone;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Endereco endereco;
 
 	public Pessoa() {

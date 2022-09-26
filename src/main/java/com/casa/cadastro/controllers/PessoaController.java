@@ -29,7 +29,7 @@ import com.casa.cadastro.services.PessoaService;
 
 @RestController
 @RequestMapping("/Pessoa")
-@CrossOrigin(origins = "localhost:4200/form")
+@CrossOrigin(origins = "http://localhost:4200")
 public class PessoaController {
 
 	@Autowired
@@ -69,7 +69,7 @@ public class PessoaController {
 	}
 
 	@PutMapping("/Atualizar/{pessoaId}")
-	public ResponseEntity<Pessoa> atualizarPessoaPorId(@Valid @PathVariable Long pessoaId, @RequestBody Pessoa pessoa) {
+	public ResponseEntity<Pessoa> atualizarPorId(@Valid @PathVariable Long pessoaId, @RequestBody Pessoa pessoa) {
 		Pessoa p = pessoaService.buscarPorId(pessoaId);
 		if (p != null) {
 			pessoa.setId(pessoaId);
